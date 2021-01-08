@@ -3,3 +3,8 @@ server:
 spring:
   application:
     name: eStore Product Microservices
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: estore
