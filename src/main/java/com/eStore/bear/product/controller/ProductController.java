@@ -2,8 +2,7 @@ package com.eStore.bear.product.controller;
 
 import com.eStore.bear.product.dto.Product;
 import com.eStore.bear.product.service.ProductService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,11 +10,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Slf4j
 @RestController
 @RequestMapping("/v1")
 public class ProductController {
-
-    private static final Logger logger = LoggerFactory.getLogger(ProductController.class);
 
     @Autowired
     private ProductService productService;
@@ -25,7 +23,7 @@ public class ProductController {
 
         String status = productService.addProduct(product);
 
-        logger.info("Product added status - {}", status);
+        log.info("Product added status - {}", status);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(product);
     }
