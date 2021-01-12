@@ -33,7 +33,7 @@ public class ProductService {
         return productRepository.findByCategory(category);
     }
 
-    public Product productById(Integer id) {
+    public Product productById(String id) {
         return productRepository.findById(id).get();
     }
 
@@ -42,7 +42,7 @@ public class ProductService {
         return "product updated successfully";
     }
 
-    public String deleteProductById(Integer id) {
+    public String deleteProductById(String id) {
         productRepository.deleteById(id);
         return "product delected successfully.";
     }

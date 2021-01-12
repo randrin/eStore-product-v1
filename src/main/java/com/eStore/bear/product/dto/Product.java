@@ -19,7 +19,7 @@ import java.util.List;
 public class Product {
 
     @Id
-    private Integer id;
+    private String id;
 
     @NotNull(message = ProductConstants.PRODUCT_NAME)
     private String name;
@@ -30,8 +30,9 @@ public class Product {
     @Min(0)
     private double price;
 
-    @Max(100)
     private String currency;
+
+    @Max(100)
     private double discount;
     private String discountDescription;
     private List<String> imageURLs;
