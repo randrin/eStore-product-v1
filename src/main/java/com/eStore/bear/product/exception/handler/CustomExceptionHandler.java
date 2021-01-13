@@ -1,5 +1,8 @@
-package com.eStore.bear.product.exception;
+package com.eStore.bear.product.exception.handler;
 
+import com.eStore.bear.product.exception.CurrencyValidException;
+import com.eStore.bear.product.exception.ExceptionResponse;
+import com.eStore.bear.product.exception.ProductValidException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +22,7 @@ import java.util.stream.Collectors;
 @ControllerAdvice
 public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
 
-    @ExceptionHandler({ProductValidException.class})
+    @ExceptionHandler({ProductValidException.class, CurrencyValidException.class})
     ResponseEntity<?> ProductNotValidHandler(Exception exception, ServletWebRequest request) {
 
         ExceptionResponse exceptionResponse = new ExceptionResponse();

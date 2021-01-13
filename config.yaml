@@ -1,0 +1,6 @@
+product:
+  currencies:
+    - EUR
+    - USD
+    - FCFA
+    - AUD
