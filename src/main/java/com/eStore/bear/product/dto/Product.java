@@ -28,11 +28,13 @@ public class Product {
     private Category category;
 
     @Min(0)
+    @NotNull(message = ProductConstants.PRODUCT_PRICE)
     private double price;
 
     private String currency;
 
     @Max(100)
+    @Min(0)
     private double discount;
     private String discountDescription;
     private List<String> imageURLs;

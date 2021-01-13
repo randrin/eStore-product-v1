@@ -1,7 +1,9 @@
 package com.eStore.bear.product.service;
 
 import com.eStore.bear.product.dto.Product;
+import com.eStore.bear.product.exception.ProductValidException;
 import com.eStore.bear.product.repository.ProductRepository;
+import com.eStore.bear.product.utils.ProductConstants;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,6 +22,10 @@ public class ProductService {
     }
 
     public String addProduct(Product product) {
+
+        if(product.getPrice() == 0 && product.getDiscount() > 0) {
+            throw new ProductValidException(ProductConstants.PRODUCT_DISCOUNT);
+        }
         productRepository.save(product);
         return "product added successfully.";
     }
