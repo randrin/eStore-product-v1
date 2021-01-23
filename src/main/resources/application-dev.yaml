@@ -1,0 +1,8 @@
+server:
+  port: 9084
+spring:
+  application:
+    name: eStore Product Microservices in Dev Environnement
+product:
+  currencies:
+    - FCFA

@@ -1,0 +1,9 @@
+server:
+  port: 9085
+spring:
+  application:
+    name: eStore Product Microservices in Test Environnement
+product:
+  currencies:
+    - FCFA
+    - EUR

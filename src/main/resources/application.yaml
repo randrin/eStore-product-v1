@@ -8,8 +8,19 @@ spring:
       host: localhost
       port: 27017
       database: estore
+  profiles:
+    active: dev, test, prod
 product:
   currencies:
     - EUR
     - USD
     - FCFA
+
+---
+server:
+  port: 9085
+spring:
+  config:
+    activate:
+      on-profile:
+        - prod

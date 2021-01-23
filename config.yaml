@@ -4,3 +4,6 @@ product:
     - USD
     - FCFA
     - AUD
+spring:
+    profiles:
+      active: test
