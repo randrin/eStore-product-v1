@@ -1,0 +1,9 @@
+server:
+  port: 9082
+spring:
+  application:
+    name: eStore Product Microservices in Prod Environnement
+product:
+  currencies:
+    - USD
+    - EUR

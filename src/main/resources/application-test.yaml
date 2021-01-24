@@ -1,5 +1,5 @@
 server:
-  port: 9085
+  port: 9083
 spring:
   application:
     name: eStore Product Microservices in Test Environnement
