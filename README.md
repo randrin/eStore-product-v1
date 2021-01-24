@@ -17,3 +17,9 @@
 1) Add the dependency actuator starter
 2) Restart the application and go to loacalhost:port/actuactor
 3) Configure the application.yaml for the Business Logic
+
+---
+**** Registration Microservice in Admin Server  ****
+---
+1) Add the dependency admin client
+2) Configure the application.properties (application.yaml) registering withe the url of admin server

@@ -10,6 +10,11 @@ spring:
       database: estore
   profiles:
     active: dev, test, prod
+  boot:
+    admin:
+      client:
+        url:
+          - http://localhost:8081
 logging:
   file:
     name: d:\logs\eStore-product-v1.log
