@@ -1,9 +1,12 @@
 package com.eStore.bear.product.filters;
 
+import com.eStore.bear.product.dto.Product;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.io.output.TeeOutputStream;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
@@ -19,20 +22,37 @@ import java.io.*;
 @Order(1)
 public class RequestResponseLoggers implements Filter {
 
+    @Autowired
+    private ObjectMapper objectMapper;
+
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
 
         MyCustomHttpRequestWrapper requestWrapper = new MyCustomHttpRequestWrapper((HttpServletRequest) servletRequest);
         log.info("Request URI: {}", requestWrapper.getRequestURI());
         log.info("Request Method: {}", requestWrapper.getMethod());
-        log.info("Request Body: {}", new String(requestWrapper.getByteArray()).replaceAll("\n", " "));
+        String requestData = new String(requestWrapper.getByteArray()).replaceAll("\n", " ");
+        if ("/v1/addProduct".equalsIgnoreCase(requestWrapper.getRequestURI())) {
+            Product product = objectMapper.readValue(requestData, Product.class);
+            product.setCurrency("****");
+            requestData = objectMapper.writeValueAsString(product);
+        }
+        log.info("Request Body: {}", requestData);
 
         MyCustomHttpResponseWrapper responseWrapper = new MyCustomHttpResponseWrapper((HttpServletResponse) servletResponse);
 
         filterChain.doFilter(requestWrapper, responseWrapper);
 
         log.info("Response Status: {}", responseWrapper.getStatus());
-        log.info("Response Body: {}", responseWrapper.getBaos());
+        String responseData = new String(responseWrapper.getBaos().toByteArray());
+        if("/v1/addProduct".equalsIgnoreCase(requestWrapper.getRequestURI())){
+            Product product = objectMapper.readValue(responseData, Product.class);
+
+            product.setCurrency("****");
+
+            responseData = objectMapper.writeValueAsString(product);
+        }
+        log.info("Response Body: {}", responseData);
     }
 
     private class MyCustomHttpRequestWrapper extends HttpServletRequestWrapper {
