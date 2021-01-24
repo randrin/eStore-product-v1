@@ -10,6 +10,13 @@ spring:
       database: estore
   profiles:
     active: dev, test, prod
+logging:
+  file:
+    name: d:\logs\eStore-product-v1.log
+  logback:
+    rollingpolicy:
+      max-file-size: 100MB
+
 product:
   currencies:
     - EUR
