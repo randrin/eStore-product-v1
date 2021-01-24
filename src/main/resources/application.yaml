@@ -16,7 +16,25 @@ logging:
   logback:
     rollingpolicy:
       max-file-size: 100MB
-
+  level:
+    root: INFO
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+          - '*'
+  endpoint:
+    health:
+      show-details: ALWAYS
+  health:
+    mongo:
+      enabled: true
+info:
+  app:
+    name: eStore Product Microservice
+    version: 1.0
+    decription: CRUD Product Microservice
 product:
   currencies:
     - EUR
