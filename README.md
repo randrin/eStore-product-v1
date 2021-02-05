@@ -29,3 +29,10 @@
 ---
 1) Add the dependency in admin server [spring-boot-starter-mail]
 2) Configure the application.properties (application.yaml) registering with the port, host, domain etc.. of the server
+
+---
+**** Data Persistence and Clustering with Hazelcast in SBA Server ****
+---
+1) Add the dependency in admin server [hazelcast]
+2) Create the configuration class: to to the link: https://codecentric.github.io/spring-boot-admin/current/#clustering-support
+3) Create more instances of server and stop/start one any time. the data persistence don't loss
