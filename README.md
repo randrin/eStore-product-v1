@@ -36,3 +36,9 @@
 1) Add the dependency in admin server [hazelcast]
 2) Create the configuration class: to to the link: https://codecentric.github.io/spring-boot-admin/current/#clustering-support
 3) Create more instances of server and stop/start one any time. the data persistence don't loss
+
+---
+**** Swagger Implementation ****
+---
+1) Add the dependency in pom.xml [io.springfox]
+2) Configure the swagger bean [SwaggerConfig.class]
