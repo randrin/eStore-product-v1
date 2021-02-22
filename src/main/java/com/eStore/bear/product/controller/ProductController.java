@@ -1,6 +1,7 @@
 package com.eStore.bear.product.controller;
 
 import com.eStore.bear.product.dto.Product;
+import com.eStore.bear.product.response.ProductResponse;
 import com.eStore.bear.product.service.ProductService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,9 +23,9 @@ public class ProductController {
     @PostMapping("/addProduct")
     ResponseEntity<Product> addProduct(@RequestBody @Valid Product product){
 
-        String status = productService.addProduct(product);
+        ProductResponse response = productService.addProduct(product);
 
-        log.info("Product added status - {}", status);
+        log.info("Product added status - {}", response.getMessage());
 
         return ResponseEntity.status(HttpStatus.CREATED).body(product);
     }
@@ -45,13 +46,12 @@ public class ProductController {
     }
 
     @PutMapping("/productUpdate")
-    String updateProduct(@RequestBody Product product){
-
+    ProductResponse updateProduct(@RequestBody Product product){
         return productService.updateProduct(product);
     }
 
     @DeleteMapping("/product/{id}")
-    String deleteProductById(@PathVariable String id){
+    ProductResponse deleteProductById(@PathVariable String id){
         return productService.deleteProductById(id);
     }
 }

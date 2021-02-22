@@ -2,14 +2,14 @@
 **** Add External configuration file ****
 ---
 1) Create the application jar (mvn clean package) [do not run the unit test: mvn clean package -xtest]
-2) Go where the application jar is created (cd ..)
+2) Go where the application jar is created [In this case in target -> cd target]
 3) Run the application jar with the configuration file (java -jar APPLICATION_NAME.jar --spring.config.additional-location=PATH_OF_FILE)
 
 ---
 **** Log request / response ****
 ---
-- Possible to see the request/response in terminal console
-- Possible to hide confidential informations before sending/receiving request/response
+1) Possible to see the request/response in terminal console
+2) Possible to hide confidential informations before sending/receiving request/response
 
 ---
 **** Actuator for monitoring service ****
