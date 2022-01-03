@@ -3,6 +3,7 @@ package com.eStore.bear.product.controller;
 import com.eStore.bear.product.dto.Product;
 import com.eStore.bear.product.response.ProductResponse;
 import com.eStore.bear.product.service.ProductService;
+import com.eStore.bear.product.utils.ProductEndpoints;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,13 +15,13 @@ import java.util.List;
 
 @Slf4j
 @RestController
-@RequestMapping("/v1")
+@RequestMapping(ProductEndpoints.PRODUCT_ROOT)
 public class ProductController {
 
     @Autowired
     private ProductService productService;
 
-    @PostMapping("/addProduct")
+    @PostMapping(ProductEndpoints.SAVE_PRODUCT)
     ResponseEntity<Product> addProduct(@RequestBody @Valid Product product){
 
         ProductResponse response = productService.addProduct(product);
@@ -30,27 +31,27 @@ public class ProductController {
         return ResponseEntity.status(HttpStatus.CREATED).body(product);
     }
 
-    @GetMapping("/productList")
+    @GetMapping(ProductEndpoints.ALL_PRODUCTS)
     List<Product> productList(){
         return productService.listAllProducts();
     }
 
-    @GetMapping("/productList/{category}")
+    @GetMapping(ProductEndpoints.ALL_PRODUCTS + "/{category}")
     List<Product> productCategoryList(@PathVariable String category){
         return productService.productCategoryList(category);
     }
 
-    @GetMapping("/product/{id}")
+    @GetMapping(ProductEndpoints.PRODUCT + "/{id}")
     Product productById(@PathVariable String id){
         return productService.productById(id);
     }
 
-    @PutMapping("/productUpdate")
+    @PutMapping(ProductEndpoints.PRODUCT_UPDATE)
     ProductResponse updateProduct(@RequestBody Product product){
         return productService.updateProduct(product);
     }
 
-    @DeleteMapping("/product/{id}")
+    @DeleteMapping(ProductEndpoints.PRODUCT + "/{id}")
     ProductResponse deleteProductById(@PathVariable String id){
         return productService.deleteProductById(id);
     }
